@@ -1,6 +1,6 @@
 package listSimples;
 
-public class ListSimpEnc<T> implements IListaSimpEnc<T>{
+public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	private NoSimpEnc<T> inicio;
 	private NoSimpEnc<T> fim;
@@ -11,7 +11,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T>{
 		this.fim = null;
 		// this.tam = 0;
 	}
-	
+
 	@Override
 	public NoSimpEnc<T> getInicio() {
 		return this.inicio;
@@ -107,27 +107,38 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T>{
 	public void RemoverFim() {
 		if (tam == 0) {
 			throw new IllegalArgumentException();
+		} if (tam == 1){
+			RemoverInicio();
 		} else {
 			NoSimpEnc<T> aux = inicio;
 			NoSimpEnc<T> anterior = new NoSimpEnc<>();
 			for (int i = 0; i < tam; i++) {
-				if (aux.getProximo().equals(fim))
-					;
-				anterior.setProximo(fim);
+				if (aux.getProximo().equals(fim)) {
+				   // aux.setProximo(fim);
+					//fim.setElemento(null);
+					aux.setProximo(null);
+					fim.setElemento(aux.getElemento());
+					break;
+				}
+				aux = aux.getProximo();
 			}
-			aux = aux.getProximo();
+			
 		}
 	}
-	
+
 	public String toString() {
-		String resultado = "( ";
+		if (tam == 0)
+			return "[]";
+		String resultado = "[";
 		NoSimpEnc<T> aux = inicio;
 		for (int i = 0; i < tam; i++) {
 
-			resultado += aux.getElemento() + ", ";
+			resultado += aux.getElemento();
 			aux = aux.getProximo();
+			if (i != tam - 1)
+				resultado = resultado + ", ";
 		}
-		return resultado + " )";
+		return resultado + "]";
 	}
 
 }

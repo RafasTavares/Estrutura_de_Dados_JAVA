@@ -1,13 +1,43 @@
 package listaDupla;
 
+import java.util.Iterator;
+
 public class ListDupEnc<T> implements IListDupEnc<T> {
 
-	NoDupEnc<T> noCabeca;
-	int tam;
+	private NoDupEnc<T> noCabeca;
+	private int tamLista;
+
+	private Iterator<T> iterator = new Iterator<T>() {
+		private NoDupEnc<T> noAux;
+
+		@Override
+		public boolean hasNext() {
+			if (noAux == null) {
+				noAux = noCabeca.getAnterior();
+			}
+
+			return !(noAux == noCabeca);
+		}
+
+		@Override
+		public T next() {
+			if (noAux == null)
+				noAux = noCabeca.getAnterior();
+			
+			NoDupEnc<T> noTemp;
+			noTemp = noAux;
+			noAux = noAux.getAnterior();
+			return noTemp.getElemento();
+
+		}
+
+		@Override
+		public void remove() {
+		}
+	};
 
 	public ListDupEnc() {
-		noCabeca = new NoDupEnc<>();
-		tam = 0;
+		noCabeca = new NoDupEnc<T>();
 	}
 
 	@Override
@@ -24,126 +54,122 @@ public class ListDupEnc<T> implements IListDupEnc<T> {
 	public void clear() {
 		noCabeca.setAnterior(null);
 		noCabeca.setProximo(null);
-		tam = 0;
+		tamLista = 0;
 	}
 
 	@Override
 	public int size() {
-		return tam;
+		return tamLista;
 	}
 
 	@Override
 	public boolean estaVazia() {
-		if (tam == 0)
-			return true;
-		return false;
+		return tamLista == 0;
 	}
 
 	@Override
 	public void InserirInicio(T elemento) {
-		NoDupEnc<T> novoNo = new NoDupEnc<>(elemento);
+		NoDupEnc<T> novoNo = new NoDupEnc<T>(elemento);
 		if (noCabeca.getProximo() == null) {
 			noCabeca.setProximo(novoNo);
-			novoNo.setProximo(noCabeca);
 			noCabeca.setAnterior(novoNo);
 			novoNo.setAnterior(noCabeca);
+			novoNo.setProximo(noCabeca);
 		} else {
-			novoNo.setAnterior(noCabeca);
-			novoNo.setProximo(noCabeca.getProximo());
 			noCabeca.getProximo().setAnterior(novoNo);
+			novoNo.setProximo(noCabeca.getProximo());
 			noCabeca.setProximo(novoNo);
+			novoNo.setAnterior(noCabeca);
 		}
-		tam++;
+		tamLista++;
 	}
 
 	@Override
 	public void InserirFim(T elemento) {
-		NoDupEnc<T> novoNo = new NoDupEnc<>();
+		NoDupEnc<T> novoNo = new NoDupEnc<T>(elemento);
 		if (noCabeca.getProximo() == null) {
-			noCabeca.setAnterior(novoNo);
 			noCabeca.setProximo(novoNo);
+			noCabeca.setAnterior(novoNo);
 			novoNo.setAnterior(noCabeca);
 			novoNo.setProximo(noCabeca);
 		} else {
-			novoNo.setAnterior(noCabeca.getAnterior());
 			noCabeca.getAnterior().setProximo(novoNo);
+			novoNo.setAnterior(noCabeca.getAnterior());
 			novoNo.setProximo(noCabeca);
 			noCabeca.setAnterior(novoNo);
 		}
-		tam++;
+		tamLista++;
 	}
 
 	@Override
 	public void Inserir(int pos, T elemento) {
-		NoDupEnc<T> atual = null;
-		NoDupEnc<T> novoNo = new NoDupEnc<>(elemento);
+		if (pos > tamLista)
+			throw new IndexOutOfBoundsException("Posi��o Inv�lida");
+		int cont = 0;
 
-		if (pos == 0) {
-			InserirInicio(elemento);
-		} else if (pos == this.tam) {
-			InserirFim(elemento);
-		} else {
-			if (pos <= tam) {
-				for (int i = 0; i < pos; i++) {
-					atual = atual.getProximo();
-				}
-				novoNo.setAnterior(atual.getAnterior());
-				novoNo.setProximo(atual);
-				atual.getAnterior().setProximo(novoNo);
-				atual.setAnterior(novoNo);
+		for (NoDupEnc<T> item = noCabeca.getProximo(); item != noCabeca; item = item
+				.getProximo()) {
+			if (cont == pos) {
+				NoDupEnc<T> novoNo = new NoDupEnc<T>(elemento, item,
+						item.getAnterior());
+				item.getAnterior().setProximo(novoNo);
+				item.setAnterior(novoNo);
+				tamLista++;
+				break;
 			}
+			cont++;
 		}
-		tam++;
 	}
 
 	@Override
 	public boolean contem(T elemento) {
-		NoDupEnc<T> atual = noCabeca;
-		for (int i = 0; i < tam; i++) {
-			atual = atual.getProximo();
-			if (atual.getElemento().equals(elemento)) {
+		for (NoDupEnc<T> item = noCabeca.getProximo(); item != noCabeca; item = item
+				.getProximo()) {
+			if (item.getElemento().equals(elemento))
 				return true;
-			}
 		}
 		return false;
 	}
 
 	@Override
 	public void RemoverInicio() {
+		this.noCabeca.getProximo().setAnterior(null);
+		this.noCabeca.setProximo(noCabeca.getProximo().getProximo());
+		this.noCabeca.getProximo().getAnterior().setProximo(null);
+		this.noCabeca.getProximo().setAnterior(noCabeca);
 
-		if (noCabeca.getProximo() != null) {
-			noCabeca.getProximo().getProximo().setAnterior(noCabeca);
-			noCabeca.setProximo(noCabeca.getProximo().getProximo());
-		} else if (tam == 1) {
-			noCabeca.setAnterior(null);
-			noCabeca.setProximo(null);
-		}
-		tam--;
+		tamLista--;
 	}
 
 	@Override
 	public void RemoverFim() {
+		this.noCabeca.getAnterior().setProximo(null);
+		this.noCabeca.setAnterior(noCabeca.getAnterior().getAnterior());
+		this.noCabeca.getAnterior().getProximo().setAnterior(null);
+		this.noCabeca.getAnterior().setProximo(noCabeca);
 
-		if (noCabeca.getAnterior() != null) {
-
-			noCabeca.getAnterior().getAnterior().setProximo(noCabeca);
-			noCabeca.setAnterior(noCabeca.getAnterior().getAnterior());
-
-		} else if (tam == 1) {
-			noCabeca.setAnterior(null);
-			noCabeca.setProximo(null);
-		}
-		tam--;
+		tamLista--;
 	}
-	//TO STRING
+
+	public Iterator<T> descendingIterator() {
+		return this.iterator;
+	}
+
 	public String toString() {
-		String resultado = "( ";
-		NoDupEnc<T> aux = noCabeca;
-		for (int i = 0; i < tam; i++) {
-			aux = aux.getProximo();
-			resultado += aux.getElemento() + ", ";
+		if (this.tamLista == 0) {
+			return "[]";
 		}
-		return resultado + " )";
-	}
 
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for (NoDupEnc<T> item = noCabeca.getProximo(); item != noCabeca
+				.getAnterior(); item = item.getProximo()) {
+			sb.append(item.getElemento());
+			sb.append(", ");
+		}
+
+		sb.append(noCabeca.getAnterior().getElemento());
+		sb.append("]");
+		return sb.toString();
+	}
 }

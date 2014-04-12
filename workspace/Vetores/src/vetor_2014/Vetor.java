@@ -1,5 +1,7 @@
 package vetor_2014;
 
+import java.util.Iterator;
+
 public class Vetor<T> implements IVetor<T> {
 	private final short tamVetor = 3;
 	private T[] elementos;
@@ -34,7 +36,7 @@ public class Vetor<T> implements IVetor<T> {
 		if (posicao <=  tam) {
 			AumentarTamanho();
 			if (elementos[posicao] != null) {
-				for (int i = tam; i >= posicao; i--) {
+				for (int i = tam - 1; i >= posicao; i--) {
 					elementos[i + 1] = elementos[i];
 				}
 			}
@@ -130,6 +132,12 @@ public class Vetor<T> implements IVetor<T> {
 		builder.append("]");
 
 		return builder.toString();
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,5 +1,7 @@
 package vetor_2014;
 
+import java.util.Iterator;
+
 public interface IVetor<T> {
 	
 	public void Adicionar(T elemento);
@@ -21,4 +23,11 @@ public interface IVetor<T> {
 	public void Limpar();
 	
 	public boolean contem(T elemento);
+	
+	public Iterator<T> iterator();
+	
+	//Exemplo de impress‹o:
+	//[7, 2, 5]
+	public String toString();
+
 }
