@@ -159,6 +159,7 @@ public class TestListaSimplesEncadeada {
 		lista.InserirFim(3);
 		lista.Inserir((Integer) 9, (Integer) 8);
 		assertEquals("[9, 8, 3]", lista.toString());
+		System.out.println(lista.toString());
 	}
 
 	@Test

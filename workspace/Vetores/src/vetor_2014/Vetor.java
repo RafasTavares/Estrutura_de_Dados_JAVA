@@ -100,7 +100,7 @@ public class Vetor<T> implements IVetor<T> {
 	@Override
 	public boolean contem(T elemento) {
 		for (int i = 0; i < elementos.length; i++) {
-			if (elementos[i].equals(elemento))
+			if (elementos[i] == elemento)
 				return true;
 		}
 		return false;

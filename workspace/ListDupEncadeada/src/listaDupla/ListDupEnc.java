@@ -172,4 +172,27 @@ public class ListDupEnc<T> implements IListDupEnc<T> {
 		sb.append("]");
 		return sb.toString();
 	}
+	
+	public int RetornaPos(T elemento) {
+		NoDupEnc<T> atual = noCabeca;
+		for (int i = 0; i < tamLista; i++) {
+			atual = atual.getProximo();
+			if (atual.getElemento().equals(elemento)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public T RetornaElementoPos(int pos) {
+		if (pos == 0 && pos > tamLista) {
+			return null;
+		} else {
+			NoDupEnc<T> atual = noCabeca;
+			for (int i = 0; i < pos; i++) {
+				atual = atual.getProximo();
+			}
+			return atual.getElemento();
+		}
+	}
 }

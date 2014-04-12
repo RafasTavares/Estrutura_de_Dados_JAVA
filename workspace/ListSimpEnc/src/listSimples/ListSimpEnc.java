@@ -24,6 +24,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	@Override
 	public void clear() {
+		tam = 0;
 		inicio = fim = null;
 
 	}
@@ -56,7 +57,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 	@Override
 	public void InserirFim(T elemento) {
 		NoSimpEnc<T> novoNo = new NoSimpEnc<T>(elemento);
-		if (inicio == null)
+		if (inicio == null && tam == 0)
 			inicio = fim = novoNo;
 		else {
 			fim.setProximo(novoNo);
@@ -82,10 +83,29 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 		}
 	}
 
+	public void Remover(int pos) {
+
+		NoSimpEnc<T> atual = inicio;
+		NoSimpEnc<T> anterior = null;
+
+		if (pos == 1) {
+			RemoverInicio();
+		}
+		if (pos < tam) {
+
+			for (int i = 0; i < pos; i++) {
+				anterior = atual;
+				atual = atual.getProximo();
+			}
+		}
+		anterior.setProximo(atual.getProximo());
+		atual.setProximo(null);
+		tam--;
+	}
+
 	@Override
 	public boolean contem(T elemento) {
 		NoSimpEnc<T> existente = inicio;
-
 		for (int i = 0; i < tam; i++) {
 			if (existente.getElemento().equals(elemento)) {
 				return true;
@@ -107,22 +127,40 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 	public void RemoverFim() {
 		if (tam == 0) {
 			throw new IllegalArgumentException();
-		} if (tam == 1){
-			RemoverInicio();
 		} else {
 			NoSimpEnc<T> aux = inicio;
-			NoSimpEnc<T> anterior = new NoSimpEnc<>();
-			for (int i = 0; i < tam; i++) {
-				if (aux.getProximo().equals(fim)) {
-				   // aux.setProximo(fim);
-					//fim.setElemento(null);
-					aux.setProximo(null);
-					fim.setElemento(aux.getElemento());
-					break;
-				}
+			// NoSimpEnc<T> anterior = new NoSimpEnc<>();
+			// for (int i = 0; i < tam; i++)
+			while (aux.getProximo() != null) {
 				aux = aux.getProximo();
+				if (aux.getProximo() == fim) {
+					aux.setProximo(null);
+				}
 			}
-			
+		}
+		this.tam--;
+	}
+
+	public int RetornaPos(T elemento) {
+		NoSimpEnc<T> atual = inicio;
+		for (int i = 0; i <= tam ; i++) {
+			if (atual.getElemento().equals(elemento)) {
+				return i;
+			}
+			atual = atual.getProximo();
+		}
+		return -1;
+	}
+
+	public T RetornaElementoPos(int pos) {
+		if (pos == 0 && pos > tam) {
+			return null;
+		} else {
+			NoSimpEnc<T> atual = inicio;
+			for (int i = 0; i < pos - 1; i++) {
+				atual = atual.getProximo();
+			}
+			return atual.getElemento();
 		}
 	}
 
@@ -139,6 +177,44 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 				resultado = resultado + ", ";
 		}
 		return resultado + "]";
+	}
+
+	public void Inserir(T objeto, T elemento) throws IndexOutOfBoundsException{
+		NoSimpEnc<T> atual = inicio;
+		NoSimpEnc<T> novoNo = new NoSimpEnc<T>(elemento);
+		NoSimpEnc<T> proximo = atual.getProximo();
+		if (contem(objeto)) {
+			int posicao = RetornaPos(objeto);
+			if (posicao == tam) {
+				InserirFim((T) novoNo);
+			} else {
+				for (int i = 0; i < posicao; i++) {
+					atual = atual.getProximo();
+					// proximo = atual.getProximo();
+				}
+				novoNo.setProximo(proximo);
+				atual.setProximo(novoNo);
+			}
+			tam++;
+		} else {
+			 new IndexOutOfBoundsException();
+		}
+	}
+
+	public void Inserir(int pos, ListSimpEnc<T> lista) {
+		NoSimpEnc<T> novoEnc = inicio;
+		NoSimpEnc<T> novoNo = new NoSimpEnc<T>(lista);
+		NoSimpEnc<T> anterior = null;
+		if (pos > 0 && pos <= tam) {
+			for (int i = 0; i <= pos; i++) {
+				anterior = novoEnc;
+				novoEnc = novoEnc.getProximo();
+			}
+			anterior.setProximo(novoNo);
+			novoNo.setProximo(novoEnc);
+			tam++;
+		}
+
 	}
 
 }
