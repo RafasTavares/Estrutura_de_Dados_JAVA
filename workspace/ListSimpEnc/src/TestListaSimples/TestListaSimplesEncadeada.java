@@ -127,7 +127,7 @@ public class TestListaSimplesEncadeada {
 		lista.InserirFim(2);
 		lista.InserirFim(1);
 		lista.RemoverFim();
-		//assertEquals("[9, 2]", lista.toString());
+		// assertEquals("[9, 2]", lista.toString());
 		System.out.println(lista.toString());
 	}
 
@@ -171,11 +171,77 @@ public class TestListaSimplesEncadeada {
 		assertEquals("[9, 8, 3, 9]", lista.toString());
 	}
 
-	@Test(expected = IndexOutOfBoundsException.class)
+	@Test
+	/* (expected = IndexOutOfBoundsException.class) */
 	public void InserirElementoNaoEncontradoTest() {
 		lista.InserirFim(9);
 		lista.InserirFim(3);
 		lista.Inserir((Integer) 15, (Integer) 8);
 		assertEquals("[9, 3]", lista.toString());
+	}
+
+	@Test
+	public void CompararListas() {
+		lista.InserirInicio(3);
+		lista.InserirInicio(2);
+		lista.InserirInicio(1);
+
+		listaDois.InserirInicio(3);
+		listaDois.InserirInicio(2);
+		listaDois.InserirInicio(1);
+
+		System.out.println(lista.toString());
+		System.out.println(listaDois.toString());
+		System.out.println(lista.CompararLista(listaDois));
+		assertEquals(true, lista.CompararLista(listaDois));
+	}
+
+	@Test
+	public void CompararListas1() {
+		lista.InserirInicio(1);
+		lista.InserirInicio(2);
+		lista.InserirInicio(3);
+
+		listaDois.InserirInicio(3);
+		listaDois.InserirInicio(2);
+		listaDois.InserirInicio(1);
+
+		System.out.println(lista.toString());
+		System.out.println(listaDois.toString());
+		System.out.println(lista.CompararLista(listaDois));
+		assertEquals(false, lista.CompararLista(listaDois));
+	}
+
+	@Test
+	public void CompararListas3() {
+		lista.InserirInicio(1);
+
+		listaDois.InserirInicio(3);
+		listaDois.InserirInicio(2);
+		listaDois.InserirInicio(1);
+
+		System.out.println(lista.toString());
+		System.out.println(listaDois.toString());
+		System.out.println(lista.CompararLista(listaDois));
+		assertEquals(false, lista.CompararLista(listaDois));
+	}
+
+	@Test
+	public void InverterLista() {
+		lista.InserirInicio(3);
+		lista.InserirInicio(2);
+		lista.InserirInicio(1);
+		System.out.println("Antes " + lista.toString());
+		lista.inverterLista();
+		System.out.println("Depois " + lista.toString());
+
+	}
+	@Test
+	public void InserirPosicao() {
+		lista.Inserir(0, (Integer)1);
+		lista.Inserir(1, (Integer)2);
+		lista.Inserir(2, (Integer)3);
+		System.out.println(lista.toString());
+
 	}
 }

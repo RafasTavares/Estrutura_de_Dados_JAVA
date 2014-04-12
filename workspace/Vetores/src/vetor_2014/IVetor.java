@@ -26,8 +26,11 @@ public interface IVetor<T> {
 	
 	public Iterator<T> iterator();
 	
-	//Exemplo de impress‹o:
+	//Exemplo de impressao:
 	//[7, 2, 5]
 	public String toString();
+	
+	// Inseri Vetor na posição
+	public void Inserir (int pos, T[] lista);
 
 }

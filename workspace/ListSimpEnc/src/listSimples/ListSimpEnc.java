@@ -1,5 +1,8 @@
 package listSimples;
 
+import java.awt.List;
+import java.nio.MappedByteBuffer;
+
 public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	private NoSimpEnc<T> inicio;
@@ -143,7 +146,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	public int RetornaPos(T elemento) {
 		NoSimpEnc<T> atual = inicio;
-		for (int i = 0; i <= tam ; i++) {
+		for (int i = 0; i <= tam; i++) {
 			if (atual.getElemento().equals(elemento)) {
 				return i;
 			}
@@ -179,7 +182,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 		return resultado + "]";
 	}
 
-	public void Inserir(T objeto, T elemento) throws IndexOutOfBoundsException{
+	public void Inserir(T objeto, T elemento) throws IndexOutOfBoundsException {
 		NoSimpEnc<T> atual = inicio;
 		NoSimpEnc<T> novoNo = new NoSimpEnc<T>(elemento);
 		NoSimpEnc<T> proximo = atual.getProximo();
@@ -197,7 +200,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 			}
 			tam++;
 		} else {
-			 new IndexOutOfBoundsException();
+			new IndexOutOfBoundsException();
 		}
 	}
 
@@ -215,6 +218,46 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 			tam++;
 		}
 
+	}
+
+	@Override
+	public void inverterLista() {
+		ListSimpEnc<T> listacopia = new ListSimpEnc<>();
+		NoSimpEnc<T> ultimo = inicio;
+		NoSimpEnc<T> primeiro = inicio;
+		Integer[] vetor = new Integer[tam];
+		int aux = tam;
+		NoSimpEnc<T> anterior = null;
+		for (int i = 0; i < tam; i++) {
+
+			vetor[i] = (Integer) RetornaElementoPos(aux);
+			aux--;
+		}
+		clear();
+		for (int i = 0; i < vetor.length; i++) {
+			Inserir(i, (T) vetor[i]);
+		}
+		tam = vetor.length;
+
+	}
+
+	@Override
+	public boolean CompararLista(ListSimpEnc lista) {
+		NoSimpEnc<T> atual = inicio;
+		int aux = 0;
+		if (lista.size() != tam) {
+			return false;
+		} else {
+
+			for (int i = 1; i <= tam; i++) {
+
+				if (lista.RetornaElementoPos(i).equals(atual.getElemento())) {
+					aux = aux + 1;
+				}
+				atual = atual.getProximo();
+			}
+			return aux == tam;
+		}
 	}
 
 }

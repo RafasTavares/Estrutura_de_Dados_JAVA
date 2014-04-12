@@ -33,7 +33,7 @@ public class Vetor<T> implements IVetor<T> {
 
 	@Override
 	public void Adicionar(int posicao, T elemento) {
-		if (posicao <=  tam) {
+		if (posicao <= tam) {
 			AumentarTamanho();
 			if (elementos[posicao] != null) {
 				for (int i = tam - 1; i >= posicao; i--) {
@@ -140,4 +140,25 @@ public class Vetor<T> implements IVetor<T> {
 		return null;
 	}
 
+	@Override
+	public void Inserir(int pos, T[] lista) {
+		if (pos <= tam) {
+			AumentarTamanho();
+			if (elementos[pos] != null) {
+				for (int i = tam - 1; i >= pos; i--) {
+					elementos[i + 1] = elementos[i];
+				}
+			}
+		}
+
+		for (int i = 0; i < lista.length; i++) {
+			if (tam % 2 <= lista.length) {
+				AumentarTamanho();
+			}
+			elementos[pos] = lista[i];
+			pos++;
+			tam++;
+		}
+
+	}
 }

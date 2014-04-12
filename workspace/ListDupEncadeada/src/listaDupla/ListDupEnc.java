@@ -23,7 +23,7 @@ public class ListDupEnc<T> implements IListDupEnc<T> {
 		public T next() {
 			if (noAux == null)
 				noAux = noCabeca.getAnterior();
-			
+
 			NoDupEnc<T> noTemp;
 			noTemp = noAux;
 			noAux = noAux.getAnterior();
@@ -172,12 +172,12 @@ public class ListDupEnc<T> implements IListDupEnc<T> {
 		sb.append("]");
 		return sb.toString();
 	}
-	
+
 	public int RetornaPos(T elemento) {
 		NoDupEnc<T> atual = noCabeca;
-		for (int i = 0; i < tamLista; i++) {
+		for (int i = 1; i <= tamLista; i++) {
 			atual = atual.getProximo();
-			if (atual.getElemento().equals(elemento)) {
+			if (atual.getElemento() == elemento) {
 				return i;
 			}
 		}
@@ -193,6 +193,36 @@ public class ListDupEnc<T> implements IListDupEnc<T> {
 				atual = atual.getProximo();
 			}
 			return atual.getElemento();
+		}
+	}
+
+	public void RemoverPos(int posicao) {
+		NoDupEnc<T> atual = noCabeca;
+		NoDupEnc<T> anterior = null;
+		NoDupEnc<T> proximo = null;
+		for (int i = 1; i <= tamLista; i++) {
+			atual = atual.getProximo();
+			if (i == posicao) {
+				anterior = atual.getAnterior();
+				proximo = atual.getProximo();
+				anterior.setProximo(proximo);
+				proximo.setAnterior(anterior);
+
+			}
+		}
+		tamLista--;
+	}
+
+	@Override
+	public void RemoverTodos(T elemento) {
+		int posicao;
+		NoDupEnc<T> atual = noCabeca;
+		if (tamLista != 0) {
+			for (int i = 0; i <= tamLista; i++) {
+				posicao = RetornaPos(elemento);
+				RemoverPos(posicao);
+				atual = atual.getProximo();
+			}
 		}
 	}
 }

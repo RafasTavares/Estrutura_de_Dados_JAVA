@@ -36,5 +36,9 @@ public interface IListDupEnc<T> {
 	// Remove o �ltimo elemento da lista
 	public void RemoverFim();
 	
+	// Método toString
 	public String toString();
+	
+	//Remove todos os elemento da lista
+	public void RemoverTodos (T elemento);
 }

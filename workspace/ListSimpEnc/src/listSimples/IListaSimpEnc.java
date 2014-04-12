@@ -37,4 +37,10 @@ public interface IListaSimpEnc<T> {
 	//Transforma uma lista encadeada em uma String como o exemplo
 	//[3, 4, 6]
 	public String toString();
+	
+	//Inverter a Lista
+	public void inverterLista();
+	
+	public boolean CompararLista(ListSimpEnc lista);
+	
 }

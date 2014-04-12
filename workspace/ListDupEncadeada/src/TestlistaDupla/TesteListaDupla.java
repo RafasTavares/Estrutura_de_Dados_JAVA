@@ -159,38 +159,63 @@ public class TesteListaDupla {
 		lista.RemoverFim();
 		assertEquals("[2]", lista.toString());
 	}
-}
 
-	/*@Test
-	public void TestInterator() {
-		Iterator<Integer> i = lista.iterator();
-		int valor = i.next();
-		assertEquals(8, valor);
+	@Test
+	public void RemoverNaPos() {
+		lista.InserirInicio(3);
+		lista.InserirInicio(2);
+		lista.InserirInicio(1);
+		System.out.println(lista.toString());
+		lista.RemoverPos(1);
+		lista.RemoverPos(2);
+		System.out.println(lista.toString());
 	}
 
 	@Test
-	public void TestTerceiroInterator() {
-		lista.InserirFim(2);
-		lista.InserirFim(4);
-		lista.InserirFim(6);
-		Iterator<Integer> i = lista.iterator();
-		int valor = i.next();
-		valor = i.next();
-		valor = i.next();
-		assertEquals(4, valor);
+	public void RemoverTodos() {
+		lista.InserirInicio(5);
+		lista.InserirInicio(8);
+		lista.InserirInicio(10);
+		lista.InserirInicio(5);
+		lista.InserirInicio(2);
+		lista.InserirInicio(4);
+		lista.InserirInicio(3);
+		lista.InserirInicio(2);
+		System.out.println(lista.toString());
+		lista.RemoverTodos(8);
+		System.out.println(lista.toString());
+		lista.RemoverTodos(2);
+		System.out.println(lista.toString());
 	}
+
+	@Test
+	public void RemoverTodosII() {
 	
+	
+	}
+
 	@Test
-	public void TestUltimoInterator() {
-		lista.InserirFim(2);
-		lista.InserirFim(4);
-		lista.InserirFim(6);
-		Iterator<Integer> i = lista.iterator();
-		int valor = i.next();
-		valor = i.next();
-		valor = i.next();
-		valor = i.next();
-		assertEquals(6, valor);
+	public void retornaPosicao() {
+		lista.InserirInicio(3);
+		lista.InserirInicio(9);
+		lista.InserirInicio(1);
+		System.out.println(lista.toString());
+		System.out.println("9 posição: " + lista.RetornaPos(9));
+		System.out.println("8 Posição: " + lista.RetornaPos(8));
 	}
 }
-*/
+
+/*
+ * @Test public void TestInterator() { Iterator<Integer> i = lista.iterator();
+ * int valor = i.next(); assertEquals(8, valor); }
+ * 
+ * @Test public void TestTerceiroInterator() { lista.InserirFim(2);
+ * lista.InserirFim(4); lista.InserirFim(6); Iterator<Integer> i =
+ * lista.iterator(); int valor = i.next(); valor = i.next(); valor = i.next();
+ * assertEquals(4, valor); }
+ * 
+ * @Test public void TestUltimoInterator() { lista.InserirFim(2);
+ * lista.InserirFim(4); lista.InserirFim(6); Iterator<Integer> i =
+ * lista.iterator(); int valor = i.next(); valor = i.next(); valor = i.next();
+ * valor = i.next(); assertEquals(6, valor); } }
+ */
