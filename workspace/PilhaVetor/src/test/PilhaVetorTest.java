@@ -32,7 +32,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void EmpilharDesTest() {
+	public void EmpilharDesTest() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.desempilhe();
@@ -42,7 +42,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void getTopoTest() {
+	public void getTopoTest() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.empilhe(30);
@@ -51,7 +51,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void getTopoTest2() {
+	public void getTopoTest2() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.empilhe(30);
@@ -62,12 +62,12 @@ public class PilhaVetorTest {
 	}
 	
 	@Test(expected=PilhaVaziaException.class)
-	public void getTopoExTest() {
+	public void getTopoExTest() throws PilhaVaziaException {
 		pilhaVetor.getTopo();
 	}
 	
 	@Test
-	public void DesempilheTest() {
+	public void DesempilheTest() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.empilhe(30);
@@ -77,12 +77,12 @@ public class PilhaVetorTest {
 	}
 	
 	@Test(expected=PilhaVaziaException.class)
-	public void DesempilheExTest() {
+	public void DesempilheExTest() throws PilhaVaziaException {
 		pilhaVetor.getTopo();
 	}
 	
 	@Test(expected=PilhaVaziaException.class)
-	public void DesempilheExTest2() {
+	public void DesempilheExTest2() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.desempilhe();
@@ -103,7 +103,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void EstaVaziaTest3() {
+	public void EstaVaziaTest3() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.desempilhe();
@@ -112,7 +112,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void EstaVaziaTest4() {
+	public void EstaVaziaTest4() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.desempilhe();
 		pilhaVetor.empilhe(20);
@@ -123,7 +123,7 @@ public class PilhaVetorTest {
 	}
 	
 	@Test
-	public void SizeTest() {
+	public void SizeTest() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.desempilhe();
 		pilhaVetor.empilhe(20);
@@ -166,7 +166,7 @@ public class PilhaVetorTest {
 	}
 
 	@Test
-	public void ContemTest3() {
+	public void ContemTest3() throws PilhaVaziaException {
 		pilhaVetor.empilhe(10);
 		pilhaVetor.empilhe(20);
 		pilhaVetor.desempilhe();

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pilhaEnc.Pilha;
+import pilhaEnc.PilhaVaziaException;
 
 public class PilhaEncTest {
 
@@ -32,7 +33,7 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void EmpilharDesTest() {
+	public void EmpilharDesTest() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.desempilhe();
@@ -42,32 +43,32 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void getTopoTest() {
+	public void getTopoTest() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.empilhe(30);
-		int resultado = pilhaEnc.getTopo();
+		int resultado = (int) pilhaEnc.getTopo();
 		assertEquals(30, resultado);
 	}
 
 	@Test
-	public void getTopoTest2() {
+	public void getTopoTest2() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.empilhe(30);
 		pilhaEnc.desempilhe();
 		pilhaEnc.empilhe(30);
-		int resultado = pilhaEnc.getTopo();
+		int resultado = (int) pilhaEnc.getTopo();
 		assertEquals(30, resultado);
 	}
 
 	@Test(expected = PilhaVaziaException.class)
-	public void getTopoExTest() {
+	public void getTopoExTest() throws PilhaVaziaException {
 		pilhaEnc.getTopo();
 	}
 
 	@Test
-	public void DesempilheTest() {
+	public void DesempilheTest() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.empilhe(30);
@@ -77,12 +78,12 @@ public class PilhaEncTest {
 	}
 
 	@Test(expected = PilhaVaziaException.class)
-	public void DesempilheExTest() {
+	public void DesempilheExTest() throws PilhaVaziaException {
 		pilhaEnc.getTopo();
 	}
 
 	@Test(expected = PilhaVaziaException.class)
-	public void DesempilheExTest2() {
+	public void DesempilheExTest2() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.desempilhe();
@@ -103,7 +104,7 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void EstaVaziaTest3() {
+	public void EstaVaziaTest3() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.desempilhe();
@@ -112,7 +113,7 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void EstaVaziaTest4() {
+	public void EstaVaziaTest4() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.desempilhe();
 		pilhaEnc.empilhe(20);
@@ -123,7 +124,7 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void SizeTest() {
+	public void SizeTest() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.desempilhe();
 		pilhaEnc.empilhe(20);
@@ -166,7 +167,7 @@ public class PilhaEncTest {
 	}
 
 	@Test
-	public void ContemTest3() {
+	public void ContemTest3() throws PilhaVaziaException {
 		pilhaEnc.empilhe(10);
 		pilhaEnc.empilhe(20);
 		pilhaEnc.desempilhe();
