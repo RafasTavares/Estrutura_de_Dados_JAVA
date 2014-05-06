@@ -3,12 +3,13 @@ package pilhaEnc;
 public class Pilha<T> implements IPilha {
 
 	ListSimpEnc<T> lista;
-	private int tam;
-		public Pilha (){
+	private int tam = 0;
+
+	public Pilha() {
 		lista = new ListSimpEnc<T>();
-		
+
 	}
-	
+
 	@Override
 	public void empilhe(Object objeto) {
 		lista.InserirInicio((T) objeto);
@@ -17,32 +18,37 @@ public class Pilha<T> implements IPilha {
 
 	@Override
 	public Object desempilhe() throws PilhaVaziaException {
-		// TODO Auto-generated method stub
-		return null;
+		Object elemento = getTopo();
+		try {
+			lista.RemoverInicio();
+			tam--;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		finally {
+			return elemento;
+		}
 	}
 
 	@Override
 	public Object getTopo() throws PilhaVaziaException {
-		// TODO Auto-generated method stub
-		return null;
+		return lista.getInicio();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tam;
 	}
 
 	@Override
 	public boolean estaVazia() {
-		// TODO Auto-generated method stub
-		return false;
+		return tam == 0;
 	}
 
 	@Override
 	public boolean contem(Object objeto) {
-		// TODO Auto-generated method stub
-		return false;
+		return lista.contem((T) objeto);
+
 	}
 
 	public Object[] toArray() {
