@@ -3,8 +3,6 @@ package pilhaEnc;
 import java.awt.List;
 import java.nio.MappedByteBuffer;
 
-
-
 public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	private NoSimpEnc<T> inicio;
@@ -158,14 +156,18 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 	}
 
 	public T RetornaElementoPos(int pos) {
-		if (pos == 0 && pos > tam) {
-			return null;
-		} else {
-			NoSimpEnc<T> atual = inicio;
-			for (int i = 0; i < pos - 1; i++) {
-				atual = atual.getProximo();
+		try {
+			if (pos == 0 && pos > tam) {
+				return null;
+			} else {
+				NoSimpEnc<T> atual = inicio;
+				for (int i = 0; i < pos - 1; i++) {
+					atual = atual.getProximo();
+				}
+				return atual.getElemento();
 			}
-			return atual.getElemento();
+		} catch (Exception e) {
+			throw e;
 		}
 	}
 

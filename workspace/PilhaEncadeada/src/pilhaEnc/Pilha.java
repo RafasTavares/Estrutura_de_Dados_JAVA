@@ -19,20 +19,14 @@ public class Pilha<T> implements IPilha {
 	@Override
 	public Object desempilhe() throws PilhaVaziaException {
 		Object elemento = getTopo();
-		try {
-			lista.RemoverInicio();
-			tam--;
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		finally {
-			return elemento;
-		}
+		lista.RemoverInicio();
+		tam--;
+		return elemento;
 	}
 
 	@Override
 	public Object getTopo() throws PilhaVaziaException {
-		return lista.getInicio();
+		return lista.RetornaElementoPos(0);
 	}
 
 	@Override
@@ -49,6 +43,12 @@ public class Pilha<T> implements IPilha {
 	public boolean contem(Object objeto) {
 		return lista.contem((T) objeto);
 
+	}
+
+	@Override
+	public String toString() {
+
+		return lista.toString();
 	}
 
 	public Object[] toArray() {
