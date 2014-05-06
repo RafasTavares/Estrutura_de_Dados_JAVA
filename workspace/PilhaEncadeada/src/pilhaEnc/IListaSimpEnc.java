@@ -1,4 +1,4 @@
-package listSimples;
+package pilhaEnc;
 
 
 public interface IListaSimpEnc<T> {
