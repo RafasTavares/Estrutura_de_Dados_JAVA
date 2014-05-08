@@ -18,6 +18,8 @@ public class Pilha<T> implements IPilha {
 
 	@Override
 	public Object desempilhe() throws PilhaVaziaException {
+		if (tam == 0)
+			throw new PilhaVaziaException("");
 		Object elemento = getTopo();
 		lista.RemoverInicio();
 		tam--;
@@ -26,6 +28,8 @@ public class Pilha<T> implements IPilha {
 
 	@Override
 	public Object getTopo() throws PilhaVaziaException {
+		if(tam == 0)
+			throw new PilhaVaziaException("");
 		return lista.RetornaElementoPos(0);
 	}
 
