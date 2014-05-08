@@ -159,6 +159,21 @@ public class Vetor<T> implements IVetor<T> {
 			pos++;
 			tam++;
 		}
-
+	}
+	public T GetPrimeiro(){
+		if (tam == 0) {
+			return null;
+		}
+			if (elementos[0] != null) {
+				return	elementos[0];
+				}
+			return null;
 	}
 }
+
+
+
+
+
+
+

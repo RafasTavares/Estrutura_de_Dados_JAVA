@@ -1,31 +1,35 @@
 package pilhaVet;
 
-public class Pilha<T> implements IPilha{
+public class Pilha<T> implements IPilha<T> {
 
 	Vetor<T> vetor;
 	int tam = 0;
-	public Pilha (){
+
+	public Pilha() {
 		vetor = new Vetor<T>(3);
 	}
-	
+
 	@Override
-	public void empilhe(Object objeto) {
-		vetor.AdicionarInicio((T)objeto);
+	public void empilhe(T objeto) {
+		vetor.AdicionarInicio(objeto);
 		tam++;
 	}
 
 	@Override
-	public Object desempilhe() throws PilhaVaziaException {
-		T elemento = (T) getTopo();
+	public T desempilhe() throws PilhaVaziaException {
+		if (tam == 0)
+			throw new PilhaVaziaException("");
+		T elemento = getTopo();
 		vetor.RemoverInicio();
 		tam--;
 		return elemento;
 	}
 
 	@Override
-	public Object getTopo() throws PilhaVaziaException {
-		
-		return vetor.hashCode();
+	public T getTopo() throws PilhaVaziaException {
+		if (tam == 0)
+			throw new PilhaVaziaException("");
+		return vetor.GetPrimeiro();
 	}
 
 	@Override
@@ -39,16 +43,17 @@ public class Pilha<T> implements IPilha{
 	}
 
 	@Override
-	public boolean contem(Object objeto) {
-		return vetor.contem((T)objeto);
-		
+	public boolean contem(T objeto) {
+		return vetor.contem(objeto);
+
 	}
+
 	@Override
 	public String toString() {
 		return vetor.toString();
 	}
 
-	public Object[] toArray() {
+	public T[] toArray() {
 		// TODO Auto-generated method stub
 		return null;
 	}
