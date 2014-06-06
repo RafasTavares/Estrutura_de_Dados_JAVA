@@ -39,7 +39,7 @@ public class FilaPrioridade<T> implements IFilaPrioridade<T> {
 	@Override
 	public T Remover() throws FilaVaziaException {
 		if (contElementos == 0) {
-			throw new FilaVaziaException("");
+			throw new FilaVaziaException();
 		}
 		for (int i = 0; i < contElementos - 1; i++) {
 			this.elementos[i] = this.elementos[i + 1];
