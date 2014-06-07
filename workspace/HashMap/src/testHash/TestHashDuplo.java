@@ -186,6 +186,8 @@ public class TestHashDuplo {
 		System.out.println(hash.Retrive(24));
 		System.out.println(hash.Retrive(35));
 		System.out.println(hash.Retrive(19));
+		System.out.println(hash.remove(11));
+		System.out.println(hash.Retrive(11));
 	}
 	
 	@Test
@@ -195,6 +197,22 @@ public class TestHashDuplo {
 		hash.add(13);
 
 		System.out.println(hash.Values().toString());
-		
+	}
+	
+	@Test
+	public void AddTestLouco(){
+		hash.add(11);
+		hash.add(11);
+		hash.add(11);
+		hash.add(11);
+		hash.add(21);
+		hash.add(13);
+		hash.add(19);
+		hash.add(35);
+		hash.add(24);
+		System.out.println(hash.ToString());
+		hash.remove(11);
+		System.out.println(hash.ToString());
+
 	}
 }

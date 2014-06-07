@@ -146,7 +146,6 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 		}
 		hash = novoHash.hash;
 	}
-
 	public String ToString() {
 		String resultado = "[";
 		for (int i = 0; i < tam; i++) {
@@ -184,6 +183,8 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 
 		return null;
 	}
+	
+	
 
 	// PROVA - Quest 4
 	public Set<T> Values() {
