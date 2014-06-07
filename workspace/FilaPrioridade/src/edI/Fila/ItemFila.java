@@ -14,8 +14,7 @@ public class ItemFila<T> {
 		return prioridade;
 	}
 
-	public String getElemento() {
-		
-		return "";
+	public T getElemento() {
+		return elemento;
 	}
 }

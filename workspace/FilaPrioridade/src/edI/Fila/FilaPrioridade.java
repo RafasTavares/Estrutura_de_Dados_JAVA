@@ -75,5 +75,22 @@ public class FilaPrioridade<T> implements IFilaPrioridade<T> {
 	public int Tamanho() {
 		return contElementos;
 	}
-
+	
+	public T getMenorPrioridade () throws FilaVaziaException{
+		if (estaVazia()){
+			throw new FilaVaziaException(); 
+		}
+		else {
+			return (T) elementos[0].getElemento();	
+		}	
+	}
+	
+    public T getMaiorPrioridade () throws FilaVaziaException{
+    	if (estaVazia()){
+			throw new FilaVaziaException(); 
+		}
+		else {
+			return (T) elementos[contElementos-1].getElemento();	
+		}	
+	}
 }

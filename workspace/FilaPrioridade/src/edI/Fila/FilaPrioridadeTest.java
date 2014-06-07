@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class FilaPrioridadeTest {
 
 	private FilaPrioridade<Integer> filaVetor;
@@ -25,6 +24,7 @@ public class FilaPrioridadeTest {
 		filaVetor.Enfileirar(20, 0);
 		filaVetor.Enfileirar(10, 1);
 		filaVetor.Enfileirar(30, 2);
+		System.out.println(filaVetor.toString());
 
 		// assertEquals("[10, 30, 20]", filaVetor.toString());
 		assertEquals(3, filaVetor.Tamanho());
@@ -114,9 +114,10 @@ public class FilaPrioridadeTest {
 		filaVetor.Remover();
 		assertEquals(true, filaVetor.estaVazia());
 	}
-	
-	@Test (expected = PilhaCheiaException.class)
-	public void EnfileirarTestSeis() throws PilhaCheiaException, FilaVaziaException {
+
+	@Test(expected = PilhaCheiaException.class)
+	public void EnfileirarTestSeis() throws PilhaCheiaException,
+			FilaVaziaException {
 		filaVetor.Enfileirar(30, 0);
 		filaVetor.Enfileirar(30, 1);
 		filaVetor.Enfileirar(30, 2);
@@ -129,57 +130,82 @@ public class FilaPrioridadeTest {
 		filaVetor.Enfileirar(30, 9);
 		filaVetor.Enfileirar(30, 10);
 	}
-	
-	//PilhaCheiaException
-	
-	
-	/*
-	 * @Test public void getTopoTest() { filaVetor.Enfileirar(10);
-	 * filaVetor.Enfileirar(20); filaVetor.Enfileirar(30); int resultado = (int)
-	 * filaVetor.getInicio(); assertEquals(10, resultado); }
-	 * 
-	 * @Test public void getInicioTest2() throws FilaVaziaException {
-	 * filaVetor.Enfileirar(10); filaVetor.Enfileirar(20); filaVetor.Remover();
-	 * filaVetor.Enfileirar(30); int resultado = (int) filaVetor.getInicio();
-	 * assertEquals(20, resultado); }
-	 * 
-	 * @Test public void getInicioNullTest() { filaVetor.getInicio();
-	 * assertEquals(null, filaVetor.getInicio()); }
-	 * 
-	 * @Test public void RemoverTest() throws FilaVaziaException {
-	 * filaVetor.Enfileirar(10); filaVetor.Enfileirar(20);
-	 * filaVetor.Enfileirar(30); filaVetor.Remover(); String resultado =
-	 * filaVetor.toString(); assertEquals("[20, 30]", resultado); }
-	 * 
-	 * @Test(expected = FilaVaziaException.class) public void RemoverExTest()
-	 * throws FilaVaziaException { filaVetor.Remover(); }
-	 * 
-	 * @Test(expected = FilaVaziaException.class) public void RemovereExTest2()
-	 * throws FilaVaziaException { filaVetor.Enfileirar(10);
-	 * filaVetor.Enfileirar(20); filaVetor.Enfileirar(30); filaVetor.Remover();
-	 * filaVetor.Remover(); filaVetor.Remover(); filaVetor.Remover();
-	 * 
-	 * }
-	 * 
-	 * @Test public void ContemTest() { filaVetor.Enfileirar(10);
-	 * filaVetor.contem(10); assertEquals(true, filaVetor.contem(10)); }
-	 * 
-	 * @Test public void ContemTest2() { filaVetor.Enfileirar(10);
-	 * filaVetor.Enfileirar(20); filaVetor.Enfileirar(30); assertEquals(false,
-	 * filaVetor.contem(40)); }
-	 * 
-	 * @Test public void ContemTest3() throws FilaVaziaException {
-	 * filaVetor.Enfileirar(10); filaVetor.Enfileirar(20); filaVetor.Remover();
-	 * filaVetor.Enfileirar(30);
-	 * 
-	 * assertEquals(false, filaVetor.contem(10)); } /*
-	 * 
-	 * @Test public void ToArrayTest() { pilhaVetor.empilhe(10);
-	 * pilhaVetor.empilhe(20); pilhaVetor.empilhe(30); Object[] lista =
-	 * pilhaVetor.toArray(); assertEquals(3, lista.length); }
-	 * 
-	 * @Test public void ToArrayTest2() { pilhaVetor.empilhe(10);
-	 * pilhaVetor.empilhe(20); pilhaVetor.empilhe(30); Object[] lista =
-	 * pilhaVetor.toArray(); assertEquals(10, lista[0]); }
-	 */
+
+	@Test
+	public void EnfileirarOrdenacao() throws PilhaCheiaException,
+			FilaVaziaException {
+		filaVetor.Enfileirar(5, 5);
+		filaVetor.Enfileirar(4, 2);
+		filaVetor.Enfileirar(3, 3);
+		filaVetor.Enfileirar(2, 1);
+		filaVetor.Enfileirar(1, 1);
+		System.out.println(filaVetor.toString());
+	}
+
+	@Test
+	public void getMenorPrioridade() throws PilhaCheiaException,
+			FilaVaziaException {
+		filaVetor.Enfileirar(5, 1);
+		filaVetor.Enfileirar(4, 2);
+		filaVetor.Enfileirar(3, 3);
+		filaVetor.Enfileirar(2, 4);
+		filaVetor.Enfileirar(1, 5);
+		System.out.println(filaVetor.toString());
+		System.out.println(filaVetor.getMenorPrioridade());
+	}
+
+	@Test(expected = FilaVaziaException.class)
+	public void getMenorPrioridadeException() throws PilhaCheiaException,
+			FilaVaziaException {
+		/*
+		 * filaVetor.Enfileirar(5, 1); filaVetor.Enfileirar(4, 2);
+		 * filaVetor.Enfileirar(3, 3); filaVetor.Enfileirar(2, 4);
+		 * filaVetor.Enfileirar(1, 5);
+		 */
+		System.out.println(filaVetor.getMenorPrioridade());
+	}
+
+	@Test
+	public void getMaiorPrioridade() throws PilhaCheiaException,
+			FilaVaziaException {
+		filaVetor.Enfileirar(5, 1);
+		filaVetor.Enfileirar(4, 2);
+		filaVetor.Enfileirar(3, 3);
+		filaVetor.Enfileirar(2, 4);
+		filaVetor.Enfileirar(1, 5);
+		System.out.println(filaVetor.toString());
+		System.out.println(filaVetor.getMaiorPrioridade());
+	}
+
+	@Test(expected = FilaVaziaException.class)
+	public void getMaiorPrioridadeException() throws FilaVaziaException,
+			FilaVaziaException {
+		/*
+		 * filaVetor.Enfileirar(5, 1); filaVetor.Enfileirar(4, 2);
+		 * filaVetor.Enfileirar(3, 3); filaVetor.Enfileirar(2, 4);
+		 * filaVetor.Enfileirar(1, 5);
+		 */
+		System.out.println(filaVetor.getMaiorPrioridade());
+	}
+
+	@Test
+	public void FilaVazia() {
+		assertEquals("[]", filaVetor.toString());
+		System.out.println(filaVetor.toString());
+	}
+
+	@Test(expected = PilhaCheiaException.class)
+	public void FilaCheiaExc() throws PilhaCheiaException {
+		  filaVetor.Enfileirar(11, 1); 
+		  filaVetor.Enfileirar(10, 1); 
+		  filaVetor.Enfileirar(9, 2);
+		  filaVetor.Enfileirar(8, 3); 
+		  filaVetor.Enfileirar(7, 4);
+		  filaVetor.Enfileirar(6, 5);
+		  filaVetor.Enfileirar(5, 1); 
+		  filaVetor.Enfileirar(4, 2);
+		  filaVetor.Enfileirar(3, 3); 
+		  filaVetor.Enfileirar(2, 4);
+		  filaVetor.Enfileirar(1, 5);
+	}
 }
