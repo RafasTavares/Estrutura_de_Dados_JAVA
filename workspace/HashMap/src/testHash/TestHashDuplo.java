@@ -196,6 +196,7 @@ public class TestHashDuplo {
 		hash.add(11);
 		hash.add(21);
 		hash.add(13);
+		hash.add(1);
 
 		System.out.println(hash.values().toString());
 	}
