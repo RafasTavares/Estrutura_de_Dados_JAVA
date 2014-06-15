@@ -35,27 +35,30 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 
 	@Override
 	public boolean add(T obj) {
-		double carga = contCarga / tam;
-		if (carga >= 0.75) {
-			Redimensionar();
-			return true;
-
-		}
-		int pos = funcHash(obj.hashCode());
-
-		if (hash[pos] == null || hash[pos].getDeletado()) {
-			hash[pos] = new Hash<T>(obj.hashCode(), obj);
-			// chaves[pos] = (Integer)obj;
-			contCarga++;
-			return true;
+		if (contains(obj)) {
+			return false;
 		} else {
-			int posAtual = PosValida(pos, obj);
-			hash[posAtual] = new Hash<T>(obj.hashCode(), obj);
-			// chaves[posAtual] = (Integer)obj;
-			contCarga++;
-			return true;
-		}
+			double carga = contCarga / tam;
+			if (carga >= 0.75) {
+				Redimensionar();
+				return true;
 
+			}
+			int pos = funcHash(obj.hashCode());
+
+			if (hash[pos] == null || hash[pos].getDeletado()) {
+				hash[pos] = new Hash<T>(obj.hashCode(), obj);
+				// chaves[pos] = (Integer)obj;
+				contCarga++;
+				return true;
+			} else {
+				int posAtual = PosValida(pos, obj);
+				hash[posAtual] = new Hash<T>(obj.hashCode(), obj);
+				// chaves[posAtual] = (Integer)obj;
+				contCarga++;
+				return true;
+			}
+		}
 	}
 
 	@Override
@@ -147,7 +150,7 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 		}
 		hash = novoHash.hash;
 	}
-	
+
 	public String ToString() {
 		String resultado = "[";
 		for (int i = 0; i < tam; i++) {
@@ -161,6 +164,23 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 			}
 		}
 		return resultado + "]";
+	}
+
+	private int colisao(int chave, int hashCode, int tamanho) {
+		int i = 1;
+		int k = funcHash(chave);
+		int h2 = 1 + (chave % (tamanho - 1));
+		while (i < tamanho) {
+			int hashDuplo = (k + i * (h2)) % tamanho;
+			if (hash[hashDuplo] != null) {
+				if (!hash[hashDuplo].getDeletado() && chave == hashCode) {
+					return hashDuplo;
+				}
+
+			}
+			i++;
+		}
+		return -1;
 	}
 
 	// PROVA - Quest - 2
@@ -185,8 +205,27 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 
 		return null;
 	}
-	
-	
+
+	public T Retrive2(int chave) {
+		int resultado = funcHash(chave);
+		int posicao = -1;
+		int i = 0;
+		int count = 0;
+		while (i < hash.length) {
+			if (hash[i] != null) {
+				if (!hash[i].getDeletado()) {
+					posicao = colisao(chave, hash[i].hashCode(), hash.length);
+					if (resultado == hash[i].getElemento().hashCode()
+							|| posicao == hash[i].getElemento().hashCode()) {
+						return hash[i].getElemento();
+					}
+					count++;
+				}
+			}
+			i++;
+		}
+		return null;
+	}
 
 	// PROVA - Quest 4
 	public Set<T> values() {

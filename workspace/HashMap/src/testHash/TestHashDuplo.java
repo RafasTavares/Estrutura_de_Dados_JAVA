@@ -121,6 +121,7 @@ public class TestHashDuplo {
 		hash.remove(21);
 		System.out.println(hash.Retrive(21));
 	}
+	
 	@Test
 	public void TestRetrive1(){
 		hash.add(11);
@@ -129,7 +130,9 @@ public class TestHashDuplo {
 		hash.remove(21);
 		System.out.println(hash.Retrive(21));
 		System.out.println(hash.Retrive(13));
+		System.out.println(hash.ToString());
 	}
+	
 	@Test
 	public void TestRetrive2(){
 		hash.add(11);
@@ -142,6 +145,7 @@ public class TestHashDuplo {
 		System.out.println(hash.Retrive(11));
 		System.out.println(hash.ToString());
 	}
+	
 	@Test
 	public void TestRetrive3(){
 		hash.add(11);
@@ -173,6 +177,7 @@ public class TestHashDuplo {
 		System.out.println(hash.Retrive(123));
 		System.out.println(hash.Retrive(3));
 	}
+
 	@Test
 	public void TestRetrive5(){
 		hash.add(11);
@@ -217,4 +222,18 @@ public class TestHashDuplo {
 		System.out.println(hash.ToString());
 
 	}
+
+	@Test
+	public void AdicionarRepetido() {
+		assertEquals(true, hash.add(1));
+		assertEquals(true, hash.add(3));
+		assertEquals(true, hash.add(2));
+		assertEquals(true, hash.add(5));
+		assertEquals(false, hash.add(3));
+		assertEquals(false, hash.add(2));
+		 
+		System.out.println("Adiconar: " + hash.ToString());
+	}
+	
+
 }
