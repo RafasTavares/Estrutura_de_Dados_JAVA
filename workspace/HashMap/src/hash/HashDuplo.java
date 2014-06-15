@@ -3,6 +3,7 @@ package hash;
 import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class HashDuplo<T> implements IHashDuplo<T> {
 
@@ -146,6 +147,7 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 		}
 		hash = novoHash.hash;
 	}
+	
 	public String ToString() {
 		String resultado = "[";
 		for (int i = 0; i < tam; i++) {
@@ -187,20 +189,20 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 	
 
 	// PROVA - Quest 4
-	public Set<T> Values() {
-		// T[] ordenado = ((T[]) new Object[tam]);
-		HashSet<T> values = new HashSet<T>();
-		int[] vetor = new int[tam];
-		for (int i = 0; i < this.tam; i++) {
-			if (hash[i] != null && hash[i].getDeletado() == false) {
-				vetor[i] = (Integer) hash[i].getElemento();
+	public Set<T> values() {
+		Set<T> elemento = new TreeSet<T>();
+		int count = 0;
+		int i = 0;
+		while (i < hash.length) {
+			if (hash[i] != null) {
+				if (!hash[i].getDeletado()) {
+					elemento.add(hash[i].getElemento());
+					count++;
+				}
 			}
+			i++;
 		}
-		 values.add((T) Ordenar(vetor));
-	/*	for (int i = 0; i < this.tam; i++) {
-			values.add((T) Ordenar(vetor));
-		}*/
-		return values;
+		return elemento;
 	}
 
 	public int[] Ordenar(int[] vetor) {

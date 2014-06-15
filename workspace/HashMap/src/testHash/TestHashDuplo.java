@@ -140,6 +140,7 @@ public class TestHashDuplo {
 		System.out.println(hash.Retrive(21));
 		System.out.println(hash.Retrive(13));		
 		System.out.println(hash.Retrive(11));
+		System.out.println(hash.ToString());
 	}
 	@Test
 	public void TestRetrive3(){
@@ -196,7 +197,7 @@ public class TestHashDuplo {
 		hash.add(21);
 		hash.add(13);
 
-		System.out.println(hash.Values().toString());
+		System.out.println(hash.values().toString());
 	}
 	
 	@Test
