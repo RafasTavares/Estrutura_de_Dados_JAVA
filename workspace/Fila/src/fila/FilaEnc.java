@@ -94,9 +94,4 @@ public class FilaEnc<T> implements IFila<T> {
 	public Iterator<T> iterator() {
 		return new MyIterator();
 	}
-
-	public int PosicaoFila(T elemento){
-		return listaElementos.RetornaPos(elemento);
-		
-	}
 }

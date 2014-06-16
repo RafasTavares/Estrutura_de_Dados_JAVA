@@ -1,5 +1,7 @@
 package fila;
 
+
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -206,25 +208,4 @@ public class FilaEncTest {
 		assertEquals(20, resultado);
 	}
 
-	
-	@Test
-	public void RetornPosicao () throws FilaVaziaException{
-	filaEncadeada.Enfileirar(1);
-	filaEncadeada.Enfileirar(2);
-	filaEncadeada.Enfileirar(3);
-	filaEncadeada.Enfileirar(4);
-	filaEncadeada.Enfileirar(5);
-	System.out.println(filaEncadeada.toString());
-	System.out.println(filaEncadeada.PosicaoFila(1));
-	System.out.println(filaEncadeada.PosicaoFila(2));
-	System.out.println(filaEncadeada.PosicaoFila(3));
-	System.out.println(filaEncadeada.PosicaoFila(4));
-	System.out.println(filaEncadeada.PosicaoFila(5));
-	System.out.println(filaEncadeada.PosicaoFila(6));
-	filaEncadeada.Enfileirar(6);
-	filaEncadeada.Remover();
-	System.out.println(filaEncadeada.PosicaoFila(1));
-	System.out.println(filaEncadeada.PosicaoFila(6));	
-		
-	}
 }

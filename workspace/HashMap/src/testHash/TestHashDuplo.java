@@ -236,20 +236,4 @@ public class TestHashDuplo {
 	}
 	
 
-	@Test
-	public void testeIterator() {
-		hash.add(11);
-		hash.add(21);
-		hash.add(31);
-		
-		System.out.println(hash.Iterator().hasNext());
-
-
-		while (hash.Iterator().hasNext()) {
-			String resultado = hash.Iterator().next().toString();
-			System.out.println(resultado);
-		}
-		// boolean resultado = hash.contains(3245);
-//		assertEquals(true, resultado);
-	}
 }

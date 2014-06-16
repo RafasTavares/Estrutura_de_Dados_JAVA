@@ -3,6 +3,8 @@ package listSimples;
 import java.awt.List;
 import java.nio.MappedByteBuffer;
 
+
+
 public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	private NoSimpEnc<T> inicio;
@@ -258,24 +260,6 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 			}
 			return aux == tam;
 		}
-	}
-
-	/*
-	 * 2° Questão da 2° Chamada A primeira posição da minha lista é o valor 1
-	 * Ex: [1, 2, 3] o primeiro elemento está na posição 1
-	 */
-	public ListSimpEnc<T> subLista(int indiceInicial, int indiceFinal) {
-		ListSimpEnc<T> elementos = new ListSimpEnc<T>();
-		if (indiceInicial <= 0) {
-			indiceInicial = 1;
-		}
-		if (indiceFinal > tam) {
-			indiceFinal = tam;
-		}
-		for (int i = indiceInicial; i < indiceFinal + 1; i++) {
-			elementos.InserirFim(RetornaElementoPos(i));
-		}
-		return elementos;
 	}
 
 }

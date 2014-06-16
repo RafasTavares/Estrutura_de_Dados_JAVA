@@ -159,15 +159,6 @@ public class Vetor<T> implements IVetor<T> {
 			pos++;
 			tam++;
 		}
-	}
 
-	/*
-	 * 1° Questão da prova Remover todos os elementos existentes no vetor
-	 * passado como parametro.
-	 */
-	public void RemoverTodos(Vetor<T> vElementos) {
-		for (int i = 0; i < vElementos.tam; i++) {
-			Remover(vElementos.elementos[i]);
-		}
 	}
 }

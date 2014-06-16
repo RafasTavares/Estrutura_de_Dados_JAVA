@@ -2,12 +2,8 @@ package hash;
 
 import java.lang.reflect.Array;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeSet;
-
-import br.ed.hashingOpen.NoSimpEnc;
 
 public class HashDuplo<T> implements IHashDuplo<T> {
 
@@ -260,50 +256,4 @@ public class HashDuplo<T> implements IHashDuplo<T> {
 		}
 		return vetor;
 	}
-
-
-	
-	
-	
-
-	public Iterator<T> Iterator() {
-		return HashDuplo;
-	}
-
-	private Iterator<T> HashDuplo = new Iterator<T>() {
-		private int size = 0;
-		private int i = 0;
-
-		public boolean hasNext() {
-			if (i < hash.length)
-				return true;
-			return false;
-		}
-
-		public T next() {
-			if (!hasNext())
-				throw new NoSuchElementException("Não há proximo elementos");
-			while (i < hash.length) {
-				if (hash[i] != null) {
-					Hash<T> temp = hash[i];
-					while (size < tam) {
-						if (tam > 0) {
-							size++;
-							temp = temp;
-							return temp.getElemento();
-						}
-					}
-				}
-				size = 0;
-				i++;
-			}
-			return null;
-		}
-
-		@Override
-		public void remove() {
-			// TODO Auto-generated method stub
-			
-		}
-	};
 }

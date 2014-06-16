@@ -226,101 +226,22 @@ public class TestListaSimplesEncadeada {
 		assertEquals(false, lista.CompararLista(listaDois));
 	}
 
-	/*
-	 * @Test public void InverterLista() { lista.InserirInicio(3);
-	 * lista.InserirInicio(2); lista.InserirInicio(1);
-	 * System.out.println("Antes " + lista.toString()); lista.inverterLista();
-	 * System.out.println("Depois " + lista.toString()); }
-	 */
+	@Test
+	public void InverterLista() {
+		lista.InserirInicio(3);
+		lista.InserirInicio(2);
+		lista.InserirInicio(1);
+		System.out.println("Antes " + lista.toString());
+		lista.inverterLista();
+		System.out.println("Depois " + lista.toString());
 
+	}
 	@Test
 	public void InserirPosicao() {
-		lista.Inserir(0, (Integer) 1);
-		lista.Inserir(1, (Integer) 2);
-		lista.Inserir(2, (Integer) 3);
+		lista.Inserir(0, (Integer)1);
+		lista.Inserir(1, (Integer)2);
+		lista.Inserir(2, (Integer)3);
 		System.out.println(lista.toString());
 
 	}
-
-	@Test
-	public void RetornaElementosFaixaTest() {
-		lista.InserirFim(1);
-		lista.InserirFim(2);
-		lista.InserirFim(3);
-		lista.InserirFim(4);
-		lista.InserirFim(5);
-		lista.InserirFim(6);
-		lista.InserirFim(7);
-		lista.InserirFim(8);
-		lista.InserirFim(9);
-		lista.InserirFim(10);
-
-		System.out.println(lista.toString());
-		ListSimpEnc<Integer> novaLista = new ListSimpEnc<Integer>();
-		novaLista = lista.subLista(3, 7);
-		System.out.println("Tamanho da lista: " + lista.size());
-		System.out.println("Elementos entre a faixa: " + novaLista.toString());
-	}
-	
-	@Test
-	public void RetornaElementosFaixa1Test() {
-		lista.InserirFim(1);
-		lista.InserirFim(2);
-		lista.InserirFim(3);
-		lista.InserirFim(4);
-		lista.InserirFim(5);
-		lista.InserirFim(6);
-		lista.InserirFim(7);
-		lista.InserirFim(8);
-		lista.InserirFim(9);
-		lista.InserirFim(10);
-
-		System.out.println(lista.toString());
-		ListSimpEnc<Integer> novaLista = new ListSimpEnc<Integer>();
-		novaLista = lista.subLista(3, 15);
-		System.out.println("Tamanho da lista: " + lista.size());
-		System.out.println("Elementos entre a faixa: " + novaLista.toString());
-	}
-
-	@Test
-	public void RetornaElementosFaixa3Test() {
-		lista.InserirFim(1);
-		lista.InserirFim(2);
-		lista.InserirFim(3);
-		lista.InserirFim(4);
-		lista.InserirFim(5);
-		lista.InserirFim(6);
-		lista.InserirFim(7);
-		lista.InserirFim(8);
-		lista.InserirFim(9);
-		lista.InserirFim(10);
-
-		System.out.println(lista.toString());
-		ListSimpEnc<Integer> novaLista = new ListSimpEnc<Integer>();
-		novaLista = lista.subLista(-1, 7);
-		System.out.println("Tamanho da lista: " + lista.size());
-		System.out.println("Elementos entre a faixa: " + novaLista.toString());
-	}
-	@Test
-	public void RetornaElementosFaixa4Test() {
-		lista.InserirFim(1);
-		lista.InserirFim(2);
-		lista.InserirFim(3);
-		lista.InserirFim(4);
-		lista.InserirFim(5);
-		lista.InserirFim(6);
-		lista.InserirFim(7);
-		lista.InserirFim(8);
-		lista.InserirFim(9);
-		lista.InserirFim(10);
-
-		System.out.println(lista.toString());
-		ListSimpEnc<Integer> novaLista = new ListSimpEnc<Integer>();
-		novaLista = lista.subLista(-2, 16);
-		System.out.println("Tamanho da lista: " + lista.size());
-		System.out.println("Elementos entre a faixa: " + novaLista.toString());
-	}
-	
 }
-
-

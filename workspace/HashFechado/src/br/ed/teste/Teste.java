@@ -505,12 +505,13 @@ public class Teste {
 
 	@Test
 	public void testeIterator() {
-		hash.add(11);
-		hash.add(271);
-		hash.add(391);
-		
-		System.out.println(hash.Iterator().hasNext());
-
+		hash.add(3254);
+		hash.add(3245);
+		hash.add(3231);
+		hash.add(3289);
+		hash.add(5234);
+		hash.add(8945);
+		hash.add(2345);
 
 		while (hash.Iterator().hasNext()) {
 			String resultado = hash.Iterator().next().toString();
