@@ -148,7 +148,7 @@ public class ListSimpEnc<T> implements IListaSimpEnc<T> {
 
 	public int RetornaPos(T elemento) {
 		NoSimpEnc<T> atual = inicio;
-		for (int i = 0; i <= tam; i++) {
+		for (int i = 0; i <= tam -1; i++) {
 			if (atual.getElemento().equals(elemento)) {
 				return i;
 			}

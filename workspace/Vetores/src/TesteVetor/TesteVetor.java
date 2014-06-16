@@ -93,7 +93,7 @@ public class TesteVetor {
 	 */
 
 	@Test
-	public void InserirVetorPos() {
+	public void InserirVetorPosTest() {
 
 		Integer[] newlista = new Integer[3];
 		newlista[0] = 4;
@@ -109,6 +109,24 @@ public class TesteVetor {
 		System.out.println("Nova L: [4, 5, 6]");
 		lista.Inserir(3, newlista);
 		System.out.println("Depois: " + lista.toString());
+	}
+
+	@Test
+	public void RemoverTodosTest() {
+		lista.Adicionar(1);
+		lista.Adicionar(2);
+		lista.Adicionar(3);
+		lista.Adicionar(4);
+		lista.Adicionar(5);
+		System.out.println("Vetor Inicial: " + lista.toString());
+		Vetor<Integer> novoVetor = new Vetor<Integer>(3);	
+		novoVetor.Adicionar(1);
+		novoVetor.Adicionar(3);
+		novoVetor.Adicionar(5);
+		System.out.println("Novo Vetor: " + novoVetor.toString());
+		lista.RemoverTodos(novoVetor);
+		System.out.println("Depois de Remover todos: " + lista.toString());
+		System.out.println("Tamanho: " + lista.contem(1));
 	}
 
 }
